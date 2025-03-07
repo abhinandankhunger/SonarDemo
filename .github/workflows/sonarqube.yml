@@ -33,7 +33,7 @@ jobs:
         run: |
           sonar-scanner \
             -Dsonar.organization=your-org-name \
-            -Dsonar.projectKey=YourProjectKey \
+            -Dsonar.projectKey=abhinandankhunger_SonarDemo \
             -Dsonar.sources=. \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN

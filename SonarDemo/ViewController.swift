@@ -1,33 +1,32 @@
-//
-//  ViewController.swift
-//  SonarDemo
-//
-//  Created by Mobile Programming on 07/03/25.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
-    var userName: String!  // ❌ Issue: Force unwrapping
-    var userName1: String!  // ❌ Issue: Force unwrapping
-    var userName2: String!  // ❌ Issue: Force unwrapping
-    var userName3: String!  // ❌ Issue: Force unwrapping
+class SampleViewController: UIViewController {
+    
+    var userName: String!  // ❌ Issue: Force unwrapping (bad practice)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let user: String? = nil
-        print(user!)  // ❌ Issue: Force unwrapping a nil optional, can cause a crash
-        
+        print(user!)  // ❌ Issue: Force unwrapping nil (crash risk)
+
         let age = getUserAge()
         print("User age is \(age)")
-        
+
         let result = divide(10, by: 0)  // ❌ Issue: Division by zero not handled
-        print(result)
-        
-        let _ = "This is an unused variable"  // ❌ Issue: Unused variable
-        
+        print(result ?? "Error: Division by zero")
+
+        let _ = "Unused variable"  // ❌ Issue: Unused variable
+
         performTask { data in
-            print(data)  // ❌ Issue: Possible strong reference cycle
+            print(data)  // ❌ Issue: Retain cycle risk (no weak self)
+        }
+        
+        let password = "123456"  // ❌ Issue: Hardcoded credentials (security risk)
+        print("User password: \(password)")
+        
+        DispatchQueue.main.async {
+            sleep(5)  // ❌ Issue: Blocking the main thread (UI freeze)
         }
     }
     
@@ -35,7 +34,7 @@ class ViewController: UIViewController {
         return Int.random(in: 1...100)
     }
     
-    func divide(_ a: Int, by b: Int) -> Int {
+    func divide(_ a: Int, by b: Int) -> Int? {
         return a / b  // ❌ Issue: No error handling for division by zero
     }
     

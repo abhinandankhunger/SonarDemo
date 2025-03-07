@@ -9,7 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     var userName: String!  // ❌ Issue: Force unwrapping
-    
+    var userName1: String!  // ❌ Issue: Force unwrapping
+    var userName2: String!  // ❌ Issue: Force unwrapping
+    var userName3: String!  // ❌ Issue: Force unwrapping
     override func viewDidLoad() {
         super.viewDidLoad()
         
